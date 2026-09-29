@@ -1,0 +1,340 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>DailyList</title>
+
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <div class="app">
+
+        <!-- HEADER -->
+        <header class="app-header">
+
+            <h1>DailyList</h1>
+
+            <button
+                id="archiveButton"
+                class="header-button"
+                onclick="openArchive()"
+                title="Arsip">
+                📦
+            </button>
+
+        </header>
+
+
+        <!-- KONTEN UTAMA -->
+        <main id="mainContent">
+
+            <!-- HALAMAN BERANDA -->
+            <section id="tasksPage" class="page active">
+
+                <div id="taskContainer" class="task-container">
+
+                    <div id="emptyTask" class="empty-state">
+
+                        <div class="empty-icon">
+                            📝
+                        </div>
+
+                        <p>
+                            Mulailah menjadwalkan tugas-tugas Anda
+                            agar lebih produktif
+                        </p>
+
+                    </div>
+
+                </div>
+
+            </section>
+
+
+            <!-- HALAMAN CATATAN -->
+            <section id="notesPage" class="page">
+
+                <div class="note-input-container">
+
+                    <textarea
+                        id="noteInput"
+                        placeholder="Tulis catatan baru..."
+                        rows="3"></textarea>
+
+                    <button
+                        class="add-note-button"
+                        onclick="addNote()">
+                        +
+                    </button>
+
+                </div>
+
+                <div id="notesContainer" class="notes-container">
+
+                    <div id="emptyNotes" class="empty-notes">
+                        Belum ada catatan
+                    </div>
+
+                </div>
+
+            </section>
+
+
+            <!-- HALAMAN COREtan -->
+            <section id="drawingPage" class="page">
+
+                <!-- TOOLBAR COREtan -->
+                <div class="drawing-toolbar">
+
+                    <button
+                        id="brushTool"
+                        class="drawing-tool active"
+                        onclick="setDrawingTool('brush')"
+                        title="Kuas">
+                        ✎
+                    </button>
+
+                    <button
+                        id="eraserTool"
+                        class="drawing-tool"
+                        onclick="setDrawingTool('eraser')"
+                        title="Hapus coretan tertentu">
+                        🧹
+                    </button>
+
+
+                    <!-- PILIHAN WARNA -->
+                    <div class="color-section">
+
+                        <span class="color-label">
+                            Warna
+                        </span>
+
+                        <button
+                            class="color-button black active"
+                            onclick="selectColor('#222222', this)"
+                            title="Hitam">
+                        </button>
+
+                        <button
+                            class="color-button red"
+                            onclick="selectColor('#e91e63', this)"
+                            title="Merah muda">
+                        </button>
+
+                        <button
+                            class="color-button blue"
+                            onclick="selectColor('#2196f3', this)"
+                            title="Biru">
+                        </button>
+
+                        <button
+                            class="color-button green"
+                            onclick="selectColor('#4caf50', this)"
+                            title="Hijau">
+                        </button>
+
+                        <button
+                            class="color-button orange"
+                            onclick="selectColor('#ff9800', this)"
+                            title="Oranye">
+                        </button>
+
+                        <button
+                            class="color-button purple"
+                            onclick="selectColor('#9c27b0', this)"
+                            title="Ungu">
+                        </button>
+
+                    </div>
+
+
+                    <!-- UKURAN KUAS -->
+                    <select
+                        id="brushSize"
+                        onchange="changeBrushSize(this.value)"
+                        title="Ukuran kuas">
+
+                        <option value="3">
+                            Tipis
+                        </option>
+
+                        <option value="5" selected>
+                            Sedang
+                        </option>
+
+                        <option value="8">
+                            Tebal
+                        </option>
+
+                        <option value="12">
+                            Sangat Tebal
+                        </option>
+
+                    </select>
+
+
+                    <!-- HAPUS SEMUA -->
+                    <button
+                        class="clear-drawing-button"
+                        onclick="clearDrawing()"
+                        title="Hapus semua coretan">
+                        🗑
+                    </button>
+
+                </div>
+
+
+                <!-- CANVAS -->
+                <div class="canvas-wrapper">
+
+                    <canvas id="drawingCanvas"></canvas>
+
+                </div>
+
+            </section>
+
+        </main>
+
+
+        <!-- TOMBOL TAMBAH TUGAS -->
+        <button
+            id="addTaskButton"
+            class="floating-button"
+            onclick="openTaskModal()">
+            +
+        </button>
+
+
+        <!-- BOTTOM NAVIGATION -->
+        <nav class="bottom-navigation">
+
+            <button
+                class="nav-item active"
+                onclick="changePage('tasksPage', this)">
+
+                <span class="nav-icon">
+                    ⌂
+                </span>
+
+                <span>
+                    Beranda
+                </span>
+
+            </button>
+
+
+            <button
+                class="nav-item"
+                onclick="changePage('notesPage', this)">
+
+                <span class="nav-icon">
+                    📝
+                </span>
+
+                <span>
+                    Catatan
+                </span>
+
+            </button>
+
+
+            <button
+                class="nav-item"
+                onclick="changePage('drawingPage', this)">
+
+                <span class="nav-icon">
+                    ✎
+                </span>
+
+                <span>
+                    Coretan
+                </span>
+
+            </button>
+
+        </nav>
+
+    </div>
+
+
+    <!-- MODAL TAMBAH TUGAS -->
+    <div
+        id="taskModal"
+        class="modal">
+
+        <div class="modal-content">
+
+            <h2>
+                Tambah Tugas Baru
+            </h2>
+
+            <input
+                type="text"
+                id="taskInput"
+                placeholder="Masukkan nama tugas"
+                autocomplete="off">
+
+            <div class="modal-actions">
+
+                <button
+                    class="cancel-button"
+                    onclick="closeTaskModal()">
+                    Batal
+                </button>
+
+                <button
+                    class="confirm-button"
+                    onclick="addTask()">
+                    Tambah
+                </button>
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <!-- ARSIP -->
+    <div
+        id="archiveModal"
+        class="archive-modal">
+
+        <div class="archive-header">
+
+            <button
+                class="back-button"
+                onclick="closeArchive()">
+                ←
+            </button>
+
+            <h2>
+                Arsip
+            </h2>
+
+            <button
+                class="clear-archive-button"
+                onclick="clearArchive()">
+                ✕
+            </button>
+
+        </div>
+
+
+        <div
+            id="archiveContainer"
+            class="archive-container">
+        </div>
+
+    </div>
+
+
+    <script src="script.js"></script>
+
+</body>
+</html>
