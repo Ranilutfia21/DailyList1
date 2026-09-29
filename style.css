@@ -1,0 +1,1143 @@
+/* =====================================================
+   RESET
+===================================================== */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+
+/* =====================================================
+   GLOBAL
+===================================================== */
+
+html,
+body {
+    width: 100%;
+    height: 100%;
+
+    font-family: Arial, Helvetica, sans-serif;
+
+    background: #eeeeee;
+
+    overflow: hidden;
+}
+
+
+/* =====================================================
+   APP - BENTUK HP
+===================================================== */
+
+.app {
+    width: 100%;
+    max-width: 430px;
+
+    height: 100vh;
+    height: 100dvh;
+
+    margin: 0 auto;
+
+    display: flex;
+    flex-direction: column;
+
+    background: white;
+
+    position: relative;
+
+    overflow: hidden;
+}
+
+
+/* Pada laptop/desktop dibuat seperti frame HP */
+@media (min-width: 600px) {
+
+    body {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .app {
+        height: 92vh;
+        max-height: 900px;
+
+        border-radius: 28px;
+
+        box-shadow:
+            0 10px 40px rgba(0, 0, 0, 0.18);
+
+        overflow: hidden;
+    }
+
+}
+
+
+/* =====================================================
+   HEADER
+===================================================== */
+
+.app-header {
+    height: 65px;
+
+    background: #e91e63;
+
+    color: white;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    position: relative;
+
+    flex-shrink: 0;
+
+    box-shadow:
+        0 2px 8px rgba(0, 0, 0, 0.15);
+
+    z-index: 10;
+}
+
+.app-header h1 {
+    font-size: 23px;
+    font-weight: 600;
+}
+
+.header-button {
+    position: absolute;
+
+    right: 16px;
+
+    border: none;
+
+    background: transparent;
+
+    color: white;
+
+    font-size: 23px;
+
+    cursor: pointer;
+
+    transition: 0.2s;
+}
+
+.header-button:hover {
+    transform: scale(1.15);
+}
+
+
+/* =====================================================
+   MAIN
+===================================================== */
+
+#mainContent {
+    flex: 1;
+
+    min-height: 0;
+
+    position: relative;
+
+    overflow: hidden;
+}
+
+
+/* =====================================================
+   PAGE
+===================================================== */
+
+.page {
+    display: none;
+
+    width: 100%;
+    height: 100%;
+
+    overflow-y: auto;
+}
+
+.page.active {
+    display: block;
+}
+
+
+/* =====================================================
+   TASK
+===================================================== */
+
+.task-container {
+    padding: 15px;
+}
+
+.empty-state {
+    min-height: 400px;
+
+    height: 100%;
+
+    display: flex;
+
+    flex-direction: column;
+
+    align-items: center;
+
+    justify-content: center;
+
+    text-align: center;
+
+    padding: 30px;
+}
+
+.empty-icon {
+    font-size: 75px;
+
+    margin-bottom: 20px;
+
+    opacity: 0.55;
+}
+
+.empty-state p {
+    max-width: 350px;
+
+    font-size: 17px;
+
+    line-height: 1.6;
+
+    color: #888;
+}
+
+
+/* =====================================================
+   TASK ITEM
+===================================================== */
+
+.task-item {
+    display: flex;
+
+    align-items: center;
+
+    gap: 12px;
+
+    background: white;
+
+    padding: 15px;
+
+    margin-bottom: 10px;
+
+    border-radius: 10px;
+
+    box-shadow:
+        0 2px 8px rgba(0, 0, 0, 0.08);
+}
+
+.task-checkbox {
+    width: 20px;
+    height: 20px;
+
+    accent-color: #e91e63;
+
+    cursor: pointer;
+
+    flex-shrink: 0;
+}
+
+.task-name {
+    flex: 1;
+
+    font-size: 16px;
+
+    line-height: 1.5;
+
+    word-break: break-word;
+}
+
+.delete-task {
+    border: none;
+
+    background: transparent;
+
+    color: #888;
+
+    font-size: 19px;
+
+    cursor: pointer;
+
+    padding: 5px;
+}
+
+.delete-task:hover {
+    color: #e91e63;
+}
+
+
+/* =====================================================
+   FLOATING BUTTON
+===================================================== */
+
+.floating-button {
+    position: absolute;
+
+    right: 18px;
+    bottom: 82px;
+
+    width: 56px;
+    height: 56px;
+
+    border-radius: 50%;
+
+    border: none;
+
+    background: #e91e63;
+
+    color: white;
+
+    font-size: 31px;
+
+    cursor: pointer;
+
+    box-shadow:
+        0 4px 12px rgba(0, 0, 0, 0.25);
+
+    z-index: 20;
+
+    transition: 0.2s;
+}
+
+.floating-button:hover {
+    transform: scale(1.08);
+
+    background: #d81b60;
+}
+
+
+/* =====================================================
+   BOTTOM NAVIGATION
+===================================================== */
+
+.bottom-navigation {
+    height: 70px;
+
+    display: flex;
+
+    background: #fce4ec;
+
+    border-top: 1px solid #f3c4d2;
+
+    flex-shrink: 0;
+
+    z-index: 15;
+}
+
+.nav-item {
+    flex: 1;
+
+    border: none;
+
+    background: transparent;
+
+    color: #888;
+
+    display: flex;
+
+    flex-direction: column;
+
+    align-items: center;
+
+    justify-content: center;
+
+    gap: 5px;
+
+    cursor: pointer;
+
+    font-size: 13px;
+
+    transition: 0.2s;
+}
+
+.nav-item.active {
+    color: #e91e63;
+
+    font-weight: bold;
+}
+
+.nav-icon {
+    font-size: 23px;
+}
+
+.nav-item:hover {
+    color: #e91e63;
+}
+
+
+/* =====================================================
+   CATATAN
+===================================================== */
+
+.note-input-container {
+    display: flex;
+
+    gap: 10px;
+
+    padding: 16px;
+
+    background: white;
+
+    border-bottom: 1px solid #eee;
+}
+
+.note-input-container textarea {
+    flex: 1;
+
+    resize: none;
+
+    border: 1px solid #ddd;
+
+    border-radius: 8px;
+
+    padding: 12px;
+
+    font-family: inherit;
+
+    font-size: 15px;
+
+    outline: none;
+}
+
+.note-input-container textarea:focus {
+    border-color: #e91e63;
+}
+
+.add-note-button {
+    width: 45px;
+    height: 45px;
+
+    border-radius: 50%;
+
+    border: none;
+
+    background: #e91e63;
+
+    color: white;
+
+    font-size: 25px;
+
+    cursor: pointer;
+
+    align-self: center;
+}
+
+.notes-container {
+    padding: 15px;
+}
+
+.empty-notes {
+    text-align: center;
+
+    margin-top: 80px;
+
+    font-size: 18px;
+
+    color: #999;
+}
+
+.note-item {
+    display: flex;
+
+    align-items: flex-start;
+
+    gap: 10px;
+
+    background: white;
+
+    padding: 15px;
+
+    margin-bottom: 10px;
+
+    border-radius: 10px;
+
+    box-shadow:
+        0 2px 8px rgba(0, 0, 0, 0.08);
+}
+
+.note-text {
+    flex: 1;
+
+    white-space: pre-wrap;
+
+    word-break: break-word;
+
+    font-size: 15px;
+
+    line-height: 1.5;
+}
+
+.delete-note {
+    border: none;
+
+    background: transparent;
+
+    color: #888;
+
+    font-size: 18px;
+
+    cursor: pointer;
+}
+
+.delete-note:hover {
+    color: #e91e63;
+}
+
+
+/* =====================================================
+   COREtan
+===================================================== */
+
+#drawingPage {
+    position: relative;
+
+    background: white;
+
+    overflow: hidden;
+
+    display: none;
+
+    flex-direction: column;
+}
+
+#drawingPage.active {
+    display: flex;
+}
+
+
+/* =====================================================
+   TOOLBAR COREtan
+===================================================== */
+
+.drawing-toolbar {
+    width: 100%;
+
+    min-height: 62px;
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 8px;
+
+    padding: 8px 10px;
+
+    background: #ffffff;
+
+    border-bottom: 1px solid #eeeeee;
+
+    box-shadow:
+        0 2px 6px rgba(0, 0, 0, 0.08);
+
+    z-index: 5;
+
+    flex-shrink: 0;
+
+    overflow-x: auto;
+}
+
+
+/* Tombol kuas & penghapus */
+
+.drawing-tool {
+    width: 42px;
+    height: 42px;
+
+    flex-shrink: 0;
+
+    border: none;
+
+    border-radius: 10px;
+
+    background: #f2f2f2;
+
+    font-size: 20px;
+
+    cursor: pointer;
+}
+
+.drawing-tool.active {
+    background: #e91e63;
+
+    color: white;
+}
+
+
+/* =====================================================
+   WARNA
+===================================================== */
+
+.color-section {
+    display: flex;
+
+    align-items: center;
+
+    gap: 6px;
+
+    flex-shrink: 0;
+}
+
+.color-label {
+    font-size: 11px;
+
+    color: #777;
+
+    margin-right: 2px;
+}
+
+.color-button {
+    width: 25px;
+    height: 25px;
+
+    border-radius: 50%;
+
+    border: 2px solid white;
+
+    outline: 1px solid #ddd;
+
+    cursor: pointer;
+
+    flex-shrink: 0;
+}
+
+.color-button.active {
+    outline: 3px solid #333;
+
+    outline-offset: 1px;
+}
+
+.color-button.black {
+    background: #222222;
+}
+
+.color-button.red {
+    background: #e91e63;
+}
+
+.color-button.blue {
+    background: #2196f3;
+}
+
+.color-button.green {
+    background: #4caf50;
+}
+
+.color-button.orange {
+    background: #ff9800;
+}
+
+.color-button.purple {
+    background: #9c27b0;
+}
+
+
+/* =====================================================
+   UKURAN KUAS
+===================================================== */
+
+#brushSize {
+    height: 38px;
+
+    border: 1px solid #ddd;
+
+    border-radius: 8px;
+
+    padding: 0 5px;
+
+    background: white;
+
+    font-size: 12px;
+
+    outline: none;
+
+    flex-shrink: 0;
+}
+
+
+/* =====================================================
+   HAPUS SEMUA
+===================================================== */
+
+.clear-drawing-button {
+    width: 42px;
+    height: 42px;
+
+    border: none;
+
+    border-radius: 10px;
+
+    background: #ffebee;
+
+    color: #e91e63;
+
+    font-size: 19px;
+
+    cursor: pointer;
+
+    flex-shrink: 0;
+
+    margin-left: auto;
+}
+
+
+/* =====================================================
+   CANVAS
+===================================================== */
+
+.canvas-wrapper {
+    flex: 1;
+
+    min-height: 0;
+
+    width: 100%;
+
+    position: relative;
+
+    background: white;
+}
+
+#drawingCanvas {
+    display: block;
+
+    width: 100%;
+    height: 100%;
+
+    background: white;
+
+    cursor: crosshair;
+
+    touch-action: none;
+}
+
+
+/* Cursor saat mode penghapus */
+
+#drawingCanvas.eraser-mode {
+    cursor: cell;
+}
+
+
+/* =====================================================
+   MODAL
+===================================================== */
+
+.modal {
+    display: none;
+
+    position: fixed;
+
+    inset: 0;
+
+    background: rgba(0, 0, 0, 0.45);
+
+    align-items: center;
+
+    justify-content: center;
+
+    z-index: 100;
+}
+
+.modal.show {
+    display: flex;
+}
+
+.modal-content {
+    width: 90%;
+
+    max-width: 380px;
+
+    background: white;
+
+    border-radius: 12px;
+
+    padding: 25px;
+
+    box-shadow:
+        0 10px 30px rgba(0, 0, 0, 0.2);
+}
+
+.modal-content h2 {
+    font-size: 20px;
+
+    margin-bottom: 20px;
+}
+
+.modal-content input {
+    width: 100%;
+
+    padding: 13px;
+
+    border: 1px solid #ddd;
+
+    border-radius: 8px;
+
+    outline: none;
+
+    font-size: 15px;
+}
+
+.modal-content input:focus {
+    border-color: #e91e63;
+}
+
+.modal-actions {
+    display: flex;
+
+    justify-content: flex-end;
+
+    gap: 10px;
+
+    margin-top: 20px;
+}
+
+.modal-actions button {
+    padding: 10px 18px;
+
+    border-radius: 7px;
+
+    border: none;
+
+    cursor: pointer;
+
+    font-size: 14px;
+}
+
+.cancel-button {
+    background: #eee;
+
+    color: #555;
+}
+
+.confirm-button {
+    background: #e91e63;
+
+    color: white;
+}
+
+
+/* =====================================================
+   ARCHIVE
+===================================================== */
+
+.archive-modal {
+    display: none;
+
+    position: absolute;
+
+    inset: 0;
+
+    background: white;
+
+    z-index: 200;
+
+    flex-direction: column;
+}
+
+.archive-modal.show {
+    display: flex;
+}
+
+.archive-header {
+    height: 65px;
+
+    background: #e91e63;
+
+    color: white;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: space-between;
+
+    padding: 0 15px;
+
+    flex-shrink: 0;
+}
+
+.archive-header h2 {
+    font-size: 21px;
+
+    font-weight: 600;
+}
+
+.back-button,
+.clear-archive-button {
+    border: none;
+
+    background: transparent;
+
+    color: white;
+
+    font-size: 23px;
+
+    cursor: pointer;
+
+    width: 45px;
+}
+
+.archive-container {
+    flex: 1;
+
+    overflow-y: auto;
+
+    padding: 15px;
+}
+
+.empty-archive {
+    text-align: center;
+
+    margin-top: 100px;
+
+    color: #999;
+
+    font-size: 18px;
+}
+
+.archive-item {
+    padding: 15px;
+
+    margin-bottom: 10px;
+
+    background: #fafafa;
+
+    border-radius: 10px;
+
+    border: 1px solid #eee;
+
+    color: #555;
+
+    text-decoration: line-through;
+}
+
+
+/* =====================================================
+   RESPONSIVE
+===================================================== */
+
+@media (max-width: 600px) {
+
+    .app-header {
+        height: 60px;
+    }
+
+    .app-header h1 {
+        font-size: 21px;
+    }
+
+    .empty-state p {
+        font-size: 16px;
+    }
+
+    .drawing-toolbar {
+        gap: 6px;
+
+        padding: 7px;
+    }
+
+    .color-label {
+        display: none;
+    }
+
+    .color-button {
+        width: 23px;
+        height: 23px;
+    }
+
+}
+/* =====================================================
+   ARCHIVE
+===================================================== */
+
+.archive-modal {
+    display: none;
+
+    position: fixed;
+
+    top: 50%;
+    left: 50%;
+
+    transform: translate(-50%, -50%);
+
+    width: 100%;
+    max-width: 430px;
+
+    height: 100vh;
+    height: 100dvh;
+
+    background: white;
+
+    z-index: 200;
+
+    flex-direction: column;
+
+    overflow: hidden;
+}
+
+.archive-modal.show {
+    display: flex;
+}
+
+
+/* =====================================================
+   HEADER ARCHIVE
+===================================================== */
+
+.archive-header {
+    height: 65px;
+    min-height: 65px;
+
+    background: #e91e63;
+
+    color: white;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: space-between;
+
+    padding: 0 15px;
+
+    flex-shrink: 0;
+}
+
+.archive-header h2 {
+    font-size: 21px;
+
+    font-weight: 600;
+}
+
+
+/* =====================================================
+   BUTTON ARCHIVE
+===================================================== */
+
+.back-button,
+.clear-archive-button {
+    border: none;
+
+    background: transparent;
+
+    color: white;
+
+    font-size: 23px;
+
+    cursor: pointer;
+
+    width: 45px;
+
+    height: 45px;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+}
+
+
+/* =====================================================
+   ISI ARCHIVE
+===================================================== */
+
+.archive-container {
+    flex: 1;
+
+    min-height: 0;
+
+    width: 100%;
+
+    overflow-y: auto;
+
+    padding: 15px;
+
+    background: white;
+}
+
+.empty-archive {
+    text-align: center;
+
+    margin-top: 100px;
+
+    color: #999;
+
+    font-size: 18px;
+}
+
+.archive-item {
+    padding: 15px;
+
+    margin-bottom: 10px;
+
+    background: #fafafa;
+
+    border-radius: 10px;
+
+    border: 1px solid #eee;
+
+    color: #555;
+
+    text-decoration: line-through;
+
+    word-break: break-word;
+}
+
+
+/* =====================================================
+   ARCHIVE - DESKTOP / LAPTOP
+===================================================== */
+
+@media (min-width: 600px) {
+
+    .archive-modal {
+        width: 430px;
+
+        height: 92vh;
+
+        max-height: 900px;
+
+        border-radius: 28px;
+
+        box-shadow:
+            0 10px 40px rgba(0, 0, 0, 0.18);
+    }
+
+    .archive-header {
+        border-radius: 28px 28px 0 0;
+    }
+
+}
+
+
+/* =====================================================
+   ARCHIVE - HP
+===================================================== */
+
+@media (max-width: 599px) {
+
+    .archive-modal {
+        width: 100%;
+
+        height: 100vh;
+        height: 100dvh;
+
+        border-radius: 0;
+    }
+
+    .archive-header {
+        height: 60px;
+        min-height: 60px;
+    }
+
+    .archive-header h2 {
+        font-size: 20px;
+    }
+
+    .archive-container {
+        padding: 12px;
+    }
+
+}
